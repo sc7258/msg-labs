@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#f8faf7">
+  <title>msg-keeper · 메시지를 더 편안하게</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="workspace">
+    <aside class="review-panel">
+      <div class="review-mark"><span>m</span><i></i></div>
+      <p class="eyebrow">YOUR MESSAGE, IN ORDER</p>
+      <h1>msg-keeper</h1>
+      <p class="review-lead">중요한 메시지는 가까이.<br>걸러진 메시지도 안전하게.</p>
+      <div class="review-divider"></div>
+      <p class="review-label">앱에서 할 수 있는 일</p>
+      <ol class="review-steps">
+        <li><span>01</span> SMS 수집 안내와 권한 상태</li>
+        <li><span>02</span> 일반 목록과 메시지 상세</li>
+        <li><span>03</span> 차단함, 이유 확인, 복원</li>
+        <li><span>04</span> 검색과 자동 분류 규칙</li>
+      </ol>
+      <div class="review-note">
+        <strong>동작 범위</strong>
+        <p>테스트 데이터만 사용합니다. 실제 SMS 읽기·발송·삭제, 서버 로그인·동기화는 연결되지 않았습니다.</p>
+      </div>
+      <p class="review-foot">Android 앱 UI 시안 · SMS 우선 버전</p>
+    </aside>
+
+    <div class="device-area">
+      <div class="phone">
+        <div class="status-bar" aria-hidden="true"><span>9:41</span><span class="status-symbols"><svg viewBox="0 0 20 14"><path d="M1 11.5v-2h2v2zm4 0V7h2v4.5zm4 0V4.5h2v7zm4 0V2h2v9.5z" fill="currentColor"/></svg><svg viewBox="0 0 18 14"><path d="M1 4.5c4.2-4.2 11.8-4.2 16 0M4 7.5c2.8-2.8 7.2-2.8 10 0M7.3 10.5c1-.9 2.4-.9 3.4 0" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><svg viewBox="0 0 26 14"><rect x="1" y="2" width="21" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="1.4"/><rect x="3" y="4" width="16" height="6" rx="1.5" fill="currentColor"/><path d="M24 5v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></div>
+        <header class="app-header">
+          <div class="app-brand"><span class="brand-symbol">m<span>.</span></span><span class="brand-name">msg-keeper</span></div>
+          <button id="addMessageButton" class="icon-button" type="button" aria-label="테스트 SMS 만들기" title="테스트 SMS 만들기"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
+        </header>
+        <main id="view" class="app-view" aria-live="polite"></main>
+        <nav id="bottomNav" class="bottom-nav" aria-label="주 메뉴">
+          <button type="button" data-nav="inbox"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11V5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5V11M4 11l1.8 7.1A2 2 0 0 0 7.7 19.5h8.6a2 2 0 0 0 1.9-1.4L20 11h-4.7l-1.2 2.2H9.9L8.7 11H4Z"/></svg></span><span>받은함</span></button>
+          <button type="button" data-nav="quarantine"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-3.1 7-8V6l-7-3-7 3v7c0 4.9 7 8 7 8Z"/><path d="M9 12h6"/></svg></span><span>차단함</span></button>
+          <button type="button" data-nav="search"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m15.5 15.5 4.4 4.4"/></svg></span><span>검색</span></button>
+          <button type="button" data-nav="rules"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/><circle cx="9" cy="7" r="2" fill="var(--nav-bg)"/><circle cx="16" cy="12" r="2" fill="var(--nav-bg)"/><circle cx="11" cy="17" r="2" fill="var(--nav-bg)"/></svg></span><span>규칙</span></button>
+          <button type="button" data-nav="settings"><span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 7h15M4.5 17h15"/><circle cx="9" cy="7" r="2.5" fill="var(--nav-bg)"/><circle cx="15" cy="17" r="2.5" fill="var(--nav-bg)"/></svg></span><span>설정</span></button>
+        </nav>
+      </div>
+      <p class="device-caption">화면을 눌러 흐름을 확인할 수 있는 UI 시안입니다</p>
+    </div>
+  </div>
+
+  <dialog id="detailDialog" class="sheet-dialog">
+    <div id="detailContent"></div>
+  </dialog>
+
+  <dialog id="newMessageDialog" class="sheet-dialog">
+    <form id="newMessageForm" class="sheet-content">
+      <div class="sheet-head"><div><span class="eyebrow">SIMULATOR</span><h2>테스트 SMS 만들기</h2></div><button type="button" class="close-button" data-close-dialog aria-label="닫기">×</button></div>
+      <p class="muted">입력한 내용은 이 브라우저의 데모 화면에만 저장됩니다.</p>
+      <label class="field-label" for="senderInput">발신자</label>
+      <input id="senderInput" name="sender" class="text-input" placeholder="예: 1588-0000" maxlength="60" required>
+      <label class="field-label" for="bodyInput">문자 내용</label>
+      <textarea id="bodyInput" name="body" class="text-input" placeholder="예: [광고] 오늘만 할인" rows="4" maxlength="500" required></textarea>
+      <button class="primary-button full-width" type="submit">데모 SMS 수신</button>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
